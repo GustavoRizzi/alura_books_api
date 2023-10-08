@@ -1,0 +1,40 @@
+listarLivros é referente ao método GET
+  const livros pega a lista de livros do mongodb
+  (find é um método do mongoose para fazer essa função)
+
+
+listarLivroPorID é referente ao método GET para pegar um livro apenas pelo id
+  const id pega o parametro id que enviamos, ex: /livros/1
+   1 significa o id do parametro
+  const livroEncontrado busca no mongodb esse id pelo método
+  findById do mongoose e retorna esse objeto livro
+
+
+cadastrarLivro é referente ao método POST
+  cont novoLivro pega o corpo da requisição
+  const autorEncontrado busca o autor que tenha o id igual o id da const novoLivro campo autor
+  const livroCompleto faz a função de manter os dados do corpo da requisição e adiciona no campo autor o objeto autor completo, com id, nome, nacionalidade etc..
+  const livroCriado faz a função de criar o livro novo baseado no livro completo que contem todos os dados.
+  retorna msg e o objeto livro criado
+
+
+atualizarLivro é referente ao método PUT
+  const id pega o livro da mesma forma que ListarLivroPorID
+  atualizamos esse livro pelo método findByIdAndUpdate(id, req.body)
+  é um método do mongoose que exige o id e os dados que sera enviado
+  para atualizar pelo corpo da requisição, nesse caso não salvamos a função em uma const
+
+
+excluir livro é referente ao método DELETE
+  segue a mesma ideia do atualizarLivro, só mudamos o método do
+  mongoose para findByIdAndDelete(id) nesse caso nao precisamos
+  mandar o body da requisição
+
+listarLivrosPorEditora faz um GET de busca
+  const editora = req.query.editora significa o caminho que vem da
+  url que será interpretado como busca
+  ex: /livros/busca?editora=nome&editora
+
+  const livrosPorEditora usa o método find do mongoose para buscar o
+  livro(objeto) que tenha o parametro editora = a const editora que
+  enviamos o nome pela url
